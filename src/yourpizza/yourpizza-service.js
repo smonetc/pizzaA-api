@@ -1,7 +1,7 @@
 const YourPizzaService = {
    getAllYourPizza(knex){
        return knex
-       .raw(`SELECT p.id, p.crust, p.cheese, p.sauce, p.meats, p.toppings, category.content FROM yourpizza p 
+       .raw(`SELECT p.id, p.crust, p.cheese, p.sauce, p.meats, p.toppings, p.username, category.content FROM yourpizza p 
        LEFT JOIN category ON p.category_id = category.id ORDER BY p.id`)
    },
    insertYourPizza(knex, newYourPizza) {
@@ -31,3 +31,7 @@ const YourPizzaService = {
    },
 }
 module.exports = YourPizzaService
+
+
+//.raw(`SELECT s.id, s.location_name,s.date_viewed, s.content, s.username, ca.category FROM sightings s
+//LEFT JOIN category ca ON s.category_id = ca.id ORDER BY s.id`)

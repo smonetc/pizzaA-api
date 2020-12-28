@@ -12,7 +12,8 @@ const serializeYourPizza = pizza => ({
    sauce: pizza.sauce,
    meats: pizza.meats,
    toppings: pizza.toppings,
-   category: pizza.category
+   content: pizza.content,
+   username: pizza.username
 })
 
 yourpizzaRouter
@@ -25,7 +26,7 @@ yourpizzaRouter
     .catch(next)
 })
 .post(jsonParser, (req, res, next) => {
-    const {crust,cheese,sauce,meats,toppings,category_id} = req.body
+    const {crust,cheese,sauce,meats,toppings,category_id, username} = req.body
     const newYourPizza = {crust,cheese,sauce,meats,toppings,category_id}
 
     for (const [key, value] of Object.entries(newYourPizza)) {
@@ -36,7 +37,7 @@ yourpizzaRouter
         }
     }
 
-    newYourPizza.category_id = category_id 
+    newYourPizza.username = username
     YourPizzaService.insertYourPizza(
         req.app.get('db'),
         newYourPizza
@@ -77,7 +78,8 @@ yourpizzaRouter
             sauce: res.pizza.sauce,
             meats: res.pizza.meats,
             toppings: res.pizza.toppings,
-            category: res.pizza.category //category_id
+            content: res.pizza.content, //category_id
+            username: res.pizza.username
         }
     )
 })

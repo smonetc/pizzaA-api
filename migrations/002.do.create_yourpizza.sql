@@ -6,5 +6,6 @@ CREATE TABLE yourpizza(
    meats TEXT NOT NULL,
    toppings TEXT NOT NULL,
    category_id INTEGER
-      REFERENCES category(id) ON DELETE CASCADE NOT NULL
+      REFERENCES category(id) ON DELETE CASCADE NOT NULL,
+   username TEXT
 );
